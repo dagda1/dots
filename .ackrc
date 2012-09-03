@@ -1,0 +1,9 @@
+--ignore-dir=sass-cache
+--ignore-dir=site
+--ignore-dir=tmp
+--ignore-dir=dist
+
+--type-add=html=.html.erb,.html.haml,.handlebars,.hjs,.js.coffee,.coffee,.rb,.scss
+
+--pager=less -R
+--break
