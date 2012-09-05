@@ -111,3 +111,6 @@
   enabled = true
 [credential]
 	helper = osxkeychain
+[user]
+	name = dagda1
+	email = dagda1@scotalt.net
