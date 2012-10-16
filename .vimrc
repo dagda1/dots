@@ -87,6 +87,7 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 "
 
@@ -137,6 +138,7 @@ endif
 "solarized
 syntax enable
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 
 "plugins
