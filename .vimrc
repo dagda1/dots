@@ -175,6 +175,7 @@ map ,M :CtrlPBufTagAll<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 30
+let g:NERDTreeHijackNetrw=0
 
 " Auto open nerd tree on startup
 let g:nerdtree_tabs_open_on_gui_startup = 0
