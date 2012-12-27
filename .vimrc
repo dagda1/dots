@@ -426,3 +426,8 @@ if executable('coffeetags')
 endif
 
 map  <F8> :TagbarToggle<CR>
+
+set clipboard^=unnamed
+
+"stop the cursor moving left when leaving insert mode
+inoremap <silent> <Esc> <C-O>:stopinsert<CR>
