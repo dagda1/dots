@@ -1,7 +1,16 @@
+--color
+--sort-files
+--smart-case
+
+--type-set=sass=.sass
+--type-set=coffee=.coffee
+
 --ignore-dir=sass-cache
 --ignore-dir=site
 --ignore-dir=tmp
 --ignore-dir=dist
+--ignore-dir=public
+--ignore-dir=node_modules
 
 --type-add=html=.html.erb,.html.haml,.handlebars,.hbs,.hjs,.js.coffee,.coffee,.rb,.scss
 
