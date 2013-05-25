@@ -87,6 +87,7 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/*
+set wildignore+=*/.hg/*,*/.svn/*,*/vendor/cache/*,*/public/system/*,*/tmp/*,*/log/*,*/.git/*,*/.jhw-cache/*,*/solr/data/*,*/node_modules/*,*/.DS_Store
 set wildignore+=node_modules/**
 set wildignore+=public/**
 
@@ -138,11 +139,19 @@ endif
 
 "solarized
 syntax enable
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_visibility="high"
-let g:solarized_contrast=256
-colorscheme solarized
+" set background=dark
+" let g:solarized_termcolors=256
+" let g:solarized_visibility="high"
+" let g:solarized_contrast=256
+" colorscheme solarized
+" 
+:set t_Co=256 " 256 colors
+:set background=dark
+:color jellybeans
+
+highlight Pmenu ctermbg=238 gui=bold
+highlight Pmenu ctermbg=238 gui=bold
+highlight PmenuSel ctermfg=black ctermbg=lightgray
 
 "plugins
 
@@ -432,3 +441,7 @@ set clipboard^=unnamed
 
 "stop the cursor moving left when leaving insert mode
 inoremap <silent> <Esc> <C-O>:stopinsert<CR>
+
+" Save buffer after a certain time after leaving insert mode
+set updatetime=200
+autocmd BufLeave,CursorHold,InsertLeave * silent! wa
