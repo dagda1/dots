@@ -90,6 +90,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/*
 set wildignore+=*/.hg/*,*/.svn/*,*/vendor/cache/*,*/public/system/*,*/tmp/*,*/log/*,*/.git/*,*/.jhw-cache/*,*/solr/data/*,*/node_modules/*,*/.DS_Store
 set wildignore+=node_modules/**
 set wildignore+=public/**
+set wildignore+=app/assets/fonts/**
 
 "
 
@@ -118,8 +119,8 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.json       set filetype=javascript
   autocmd BufRead,BufNewFile *.hjs        set filetype=handlebars
   autocmd BufRead,BufNewFile *.handlebars set filetype=handlebars
-  autocmd BufRead,BufNewFile jquery.*.js  set filetype=javascript syntax=jquery
-  autocmd BufRead,BufNewFile *.jquery.js  set filetype=javascript syntax=jquery
+  autocmd BufRead,BufNewFile jquery.*.js  set filetype=javascript
+  autocmd BufRead,BufNewFile *.jquery.js  set filetype=javascript
   autocmd BufRead,BufNewFile *.mako       set filetype=mako
 endif
 
