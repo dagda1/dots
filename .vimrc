@@ -443,3 +443,5 @@ inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 " Save buffer after a certain time after leaving insert mode
 set updatetime=200
 autocmd BufLeave,CursorHold,InsertLeave * silent! wa
+
+autocmd Filetype markdown setlocal spell
