@@ -88,9 +88,12 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/*
 set wildignore+=*/.hg/*,*/.svn/*,*/vendor/cache/*,*/public/system/*,*/tmp/*,*/log/*,*/.git/*,*/.jhw-cache/*,*/solr/data/*,*/node_modules/*,*/.DS_Store
+set wildignore+=*/bower_components/*
 set wildignore+=node_modules/**
 set wildignore+=public/**
 set wildignore+=app/assets/fonts/**
+set wildignore+=bower_components/**
+set wildignore+=dist/**
 
 "
 

@@ -15,6 +15,8 @@
 --ignore-dir=node_modules
 --ignore-dir=fonts
 --ignore-dir=coverage
+--ignore-dir=bower_components
+--ignore-dir=dist
 
 --type-add=html=.html.erb,.html.haml,.handlebars,.hbs,.hjs,.js.coffee,.coffee,.rb,.scss
 
