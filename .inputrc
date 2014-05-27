@@ -1,0 +1,47 @@
+# Stolen from http://vimzone.pixelblaster.ro/content/vim-mode-for-the-readline
+#
+# Be 8 bit clean.
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# mode in everything that uses readline
+set editing-mode vi
+set keymap vi
+
+set bell-style none
+
+$if mode=vi
+    #set keymap vi-command
+    #"gg": beginning-of-history
+    #"G": end-of-history
+    #set keymap vi-insert       #notice how the "jj" movement is
+    #"jj": vi-movement-mode     #after 'set keymap vi-insert'?
+    #"\C-w": backward-kill-word
+    #"\C-p": history-search-backward
+
+    set keymap vi-insert
+    "\C-l": clear-screen
+    "\C-p": history-search-backward
+    "\C-n": history-search-forward
+    # alt dot cycles through last argument
+    "\e.":yank-last-arg
+
+    set keymap vi-command
+    "D":kill-line
+    "dw": kill-word
+    "dd": kill-whole-line
+    "db": backward-kill-word
+    "cc": "ddi"
+    "cw": "dwi"
+    "cb": "dbi"
+    "diw": "lbdw"
+    "yiw": "lbyw"
+    "ciw": "lbcw"
+    "diW": "lBdW"
+    "yiW": "lByW"
+    "ciW": "lBcW"
+    "gg": beginning-of-history
+    "G": end-of-history
+$endif
