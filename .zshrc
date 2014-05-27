@@ -43,3 +43,5 @@ export PATH=/usr/local/Cellar/ctags/5.8/bin/:/Users/paulcowan/projects/doctorjs/
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 plugins=(zsh-syntax-highlighting)
+
+set -o vi
