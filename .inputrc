@@ -37,3 +37,6 @@ $if mode=vi
     "gg": beginning-of-history
     "G": end-of-history
 $endif
+
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward

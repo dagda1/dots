@@ -113,6 +113,8 @@ noremap! <Left> <Esc>
 noremap  <Right> ""
 noremap! <Right> <Esc>
 
+let g:auto_save = 1  " enable AutoSave on Vim startup
+
 let g:ctrlp_custom_ignore = 'tmp$\|site$\|.git$\|\.hg$\|\.svn$|\tmp$|\.tmp$'
 au BufRead,BufNewFile *.handlebars,*.hbs,*.hjs set ft=handlebars
 if has('autocmd')
@@ -399,36 +401,6 @@ nnoremap ' `
 nnoremap ` '
 
 set guifont=Monaco:h16
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
 
 map  <F8> :TagbarToggle<CR>
 
