@@ -2,6 +2,10 @@
 ; list the packages you want
 (setq package-list '(cider
                      clojure-mode
+                     auto-complete
+                     autopair
+                     flycheck
+                     flycheck-hdevtools
                      markdown-mode
                      sass-mode
                      evil
@@ -17,15 +21,18 @@
                      git-gutter
                      gist
                      golden-ratio
-                     sublime-themes))
-
-; things to try
-; flash sexp-eval: https://github.com/samaaron/nrepl-eval-sexp-fu
-; M-x ido:         https://github.com/nonsequitur/smex
+                     sublime-themes
+                     paredit
+                     evil-surround
+                     ace-jump-mode
+                     ack-and-a-half
+                     auto-indent-mode))
 
 ; list the repositories containing them
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives 
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
@@ -45,6 +52,10 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (load-library "iso-transl")
+;;
+;; ;; Autocomplete mode
+(require 'auto-complete)
+(add-hook 'prog-mode-hook 'auto-complete-mode)
 
 ;; Automatically save buffers before compiling
 (setq compilation-ask-about-save nil)
@@ -54,9 +65,51 @@
 
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
+
+;; auto saving
+(setq auto-save-default t)
+(setq auto-save-visited-file-name t)
+(setq auto-save-interval 20) ; twenty keystrokes
+(setq auto-save-timeout 1) ; 1 second of idle time
+
 ;; Write backup files to own directory
 (setq backup-directory-alist
       `(("." . ,(expand-file-name (concat dotfiles-dir "bak")))))
+
+;; surround
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+;; ace-jump
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+;; you can select the key you prefer to
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; 
+;; enable a more powerful jump back function from ace jump mode
+;;
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;;If you use evil
+(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
+;;ack config
+(require 'ack-and-a-half)
+;; Create shorter aliases
+(defalias 'ack 'ack-and-a-half)
+(defalias 'ack-same 'ack-and-a-half-same)
+(defalias 'ack-find-file 'ack-and-a-half-find-file)
+(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
 
 ; General UI stuff
 (global-linum-mode t)
@@ -156,13 +209,14 @@
 (evil-declare-key 'normal direx:direx-mode-map (kbd "f")   'direx:find-item)
 (evil-declare-key 'normal direx:direx-mode-map (kbd "RET") 'direx:maybe-find-item)
 (evil-declare-key 'normal direx:direx-mode-map (kbd "V")   'direx:view-item-other-window)
-(evil-declare-key 'normal direx:direx-mode-map (kbd "v")   'direx:view-item)
+; (evil-declare-key 'normal direx:direx-mode-map (kbd "v")   'direx:view-item)
 (evil-declare-key 'normal direx:direx-mode-map (kbd "g")   'direx:refresh-whole-tree)
 (evil-declare-key 'normal direx:file-map       (kbd "+")   'direx:create-directory)
 
 (evil-declare-key 'normal cider-mode-map (kbd "cpp") 'cider-eval-defun-at-point)
 (evil-declare-key 'motion cider-mode-map (kbd "cpp") 'cider-eval-defun-at-point)
 
+;forward and backwards nav
 (global-set-key (kbd "C-k") (lambda () (interactive) (previous-line 10)))
 (global-set-key (kbd "C-j") (lambda () (interactive) (next-line 10)))
 
@@ -195,8 +249,8 @@
 (require 'git-gutter)
 (git-gutter:linum-setup)
 (global-git-gutter-mode +1)
-(add-to-list 'git-gutter:update-hooks 'after-save-hook) ; this should be unnecessary
-; staging via git-gutter not working?
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -211,3 +265,19 @@
  ;; If there is more than one, they won't work right.
  )
 
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match
+   the user's shell.  This is particularly useful under Mac OSX, where
+   GUI apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell
+	 (replace-regexp-in-string "[ \t\n]*$" ""
+				   (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+
+;; Enable keyboard shortcuts for resizing:
+(when window-system
+  (set-exec-path-from-shell-PATH)
+  (global-set-key (kbd "s--") 'text-scale-decrease))
