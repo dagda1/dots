@@ -26,7 +26,13 @@
                      evil-surround
                      ace-jump-mode
                      ack-and-a-half
-                     auto-indent-mode))
+                     color-theme
+                     zenburn-theme
+                     coffee-mode
+                     magit
+                     minitest
+                     auto-indent-mode
+                     rvm))
 
 ; list the repositories containing them
 (add-to-list 'package-archives
@@ -46,6 +52,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(require 'magit)
 
 ;; Always ALWAYS use UTF-8
 (set-terminal-coding-system 'utf-8)
@@ -57,8 +64,29 @@
 (require 'auto-complete)
 (add-hook 'prog-mode-hook 'auto-complete-mode)
 
+(defun ruby-custom ()
+	"ruby-mode-hook"
+	(minitest-mode))
+(add-hook 'ruby-mode-hook 'ruby-custom)
+
 ;; Automatically save buffers before compiling
 (setq compilation-ask-about-save nil)
+
+;; copy and paste
+(setq interprogram-cut-function 'paste-to-osx 
+      interprogram-paste-function 'copy-from-osx) 
+
+(defun copy-from-osx () 
+  (let ((coding-system-for-read 'utf-8)) 
+    (shell-command-to-string "pbpaste"))) 
+
+(defun paste-to-osx (text &optional push) 
+  (let ((process-connection-type nil)) 
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy"))) 
+      (set-process-sentinel proc 'ignore) ;; stifle noise in *Messages* 
+      (process-send-string proc text) 
+      (process-send-eof proc))) 
+  text) 
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -72,9 +100,18 @@
 (setq auto-save-interval 20) ; twenty keystrokes
 (setq auto-save-timeout 1) ; 1 second of idle time
 
-;; Write backup files to own directory
+(defvar user-temporary-file-directory
+  (concat temporary-file-directory user-login-name "/"))
+(make-directory user-temporary-file-directory t)
+(setq backup-by-copying t)
 (setq backup-directory-alist
-      `(("." . ,(expand-file-name (concat dotfiles-dir "bak")))))
+      `(("." . ,user-temporary-file-directory)
+        (,tramp-file-name-regexp nil)))
+(setq auto-save-list-file-prefix
+      (concat user-temporary-file-directory ".auto-saves-"))
+(setq auto-save-file-name-transforms
+      `((".*" ,user-temporary-file-directory t)))
+(setq create-lockfiles nil)
 
 ;; surround
 (require 'evil-surround)
@@ -135,6 +172,28 @@
 (setq-default visible-bell 'top-bottom)
 (setq-default default-tab-width 2)
 (setq-default indent-tabs-mode nil)
+;; automatically clean up bad whitespace
+(setq whitespace-action '(auto-cleanup))
+;; only show bad whitespace
+(setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))
+;; This gives you a tab of 2 spaces
+(custom-set-variables '(coffee-tab-width 2))
+
+ (add-to-list 'auto-mode-alist
+               '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . ruby-mode))
+
+(add-hook 'ruby-mode-hook
+          (lambda () (rvm-activate-corresponding-ruby)))
+
+;; coffeescript
+(custom-set-variables
+ '(coffee-tab-width 2)
+ '(coffee-args-compile '("-c" "--bare")))
+
+(eval-after-load "coffee-mode"
+  '(progn
+     (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
+     (define-key coffee-mode-map (kbd "C-j") 'coffee-newline-and-indent)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'hickey t)
