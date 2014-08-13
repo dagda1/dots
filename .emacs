@@ -2,7 +2,6 @@
 ; list the packages you want
 (setq package-list '(cider
                      clojure-mode
-                     auto-complete
                      autopair
                      flycheck
                      flycheck-hdevtools
@@ -21,13 +20,10 @@
                      git-gutter
                      gist
                      golden-ratio
-                     sublime-themes
                      paredit
                      evil-surround
                      ace-jump-mode
                      ack-and-a-half
-                     color-theme
-                     zenburn-theme
                      coffee-mode
                      magit
                      minitest
@@ -59,10 +55,6 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (load-library "iso-transl")
-;;
-;; ;; Autocomplete mode
-(require 'auto-complete)
-(add-hook 'prog-mode-hook 'auto-complete-mode)
 
 (defun ruby-custom ()
 	"ruby-mode-hook"
@@ -195,8 +187,11 @@
      (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
      (define-key coffee-mode-map (kbd "C-j") 'coffee-newline-and-indent)))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'hickey t)
+(require 'color-theme)
+(color-theme-initialize)
+(load-file "~/.emacs.d/themes/color-theme-railscasts.el")
+(color-theme-railscasts)
+
 (set-default-font "M+ 1mn-15")
 
 ;; See http://www.delorie.com/gnu/docs/elisp-manual-21/elisp_620.html
@@ -311,19 +306,6 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match
    the user's shell.  This is particularly useful under Mac OSX, where
@@ -340,3 +322,12 @@
 (when window-system
   (set-exec-path-from-shell-PATH)
   (global-set-key (kbd "s--") 'text-scale-decrease))
+
+;;; esc quits
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
