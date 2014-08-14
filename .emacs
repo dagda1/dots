@@ -9,11 +9,8 @@
                      sass-mode
                      evil
                      evil-leader
-                     exec-path-from-shell
                      smartparens
                      flx-ido
-                     smex
-                     direx
                      projectile
                      rainbow-delimiters
                      magit
@@ -26,7 +23,7 @@
                      coffee-mode
                      magit
                      minitest
-                     auto-indent-mode
+                     color-theme
                      rvm))
 
 ; list the repositories containing them
@@ -41,7 +38,6 @@
 ; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
-
 ; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -54,11 +50,6 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (load-library "iso-transl")
-
-(defun ruby-custom ()
-	"ruby-mode-hook"
-	(minitest-mode))
-(add-hook 'ruby-mode-hook 'ruby-custom)
 
 ;; Automatically save buffers before compiling
 (setq compilation-ask-about-save nil)
@@ -163,18 +154,30 @@
 (setq-default visible-bell 'top-bottom)
 (setq-default default-tab-width 2)
 (setq-default indent-tabs-mode nil)
+
 ;; automatically clean up bad whitespace
 (setq whitespace-action '(auto-cleanup))
-;; only show bad whitespace
-(setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))
+
 ;; This gives you a tab of 2 spaces
 (custom-set-variables '(coffee-tab-width 2))
 
- (add-to-list 'auto-mode-alist
+(add-hook 'ruby-mode-hook 'robe-mode)
+
+(add-to-list 'auto-mode-alist
                '("\\.\\(?:gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist
+             '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . ruby-mode)) 
+
+(require 'minitest)
+(add-hook 'ruby-mode-hook 'minitest-mode)
 
 (add-hook 'ruby-mode-hook
           (lambda () (rvm-activate-corresponding-ruby)))
+
+(defun ruby-custom ()
+	"ruby-mode-hook"
+	(minitest-mode))
+(add-hook 'ruby-mode-hook 'ruby-custom)
 
 ;; coffeescript
 (custom-set-variables
