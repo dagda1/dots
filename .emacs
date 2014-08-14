@@ -19,7 +19,6 @@
                      magit
                      git-gutter
                      gist
-                     golden-ratio
                      paredit
                      evil-surround
                      ace-jump-mode
@@ -202,8 +201,6 @@
 (setq truncate-partial-width-windows nil)
 ;; Add F12 to toggle line wrap
 ;; TODO REBIND THIS (global-set-key [f12] 'toggle-truncate-lines)
-
-(require 'golden-ratio)
 
 (require 'exec-path-from-shell)
 (setq exec-path-from-shell-arguments
