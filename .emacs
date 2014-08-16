@@ -160,8 +160,6 @@
 (require 'evil)
 (evil-mode t)
 
- 
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
 (require 'rainbow-delimiters nil)
 (global-rainbow-delimiters-mode t)
 
@@ -171,8 +169,12 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-; (require 'prelude-common-lisp)
-; (require 'prelude-ruby)
-; (require 'prelude-scss)
-; (require 'prelude-coffee)
-; (require 'prelude-ido)
+(require 'prelude-common-lisp)
+(require 'prelude-ruby)
+(require 'prelude-scss)
+(require 'prelude-coffee)
+(require 'prelude-clojure)
+(require 'prelude-ido)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/")
+(require 'handlebars-mode)
