@@ -7,6 +7,9 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
+PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -34,13 +37,11 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/Cellar/ctags/5.8/bin/:/Users/paulcowan/projects/doctorjs/bin:/usr/local/Cellar/mongodb/2.0.4-x86_64/bin/:/Developer/usr/bin/:/usr/local/bin:/usr/local/apache-maven-3.0.2/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/paulcowan/bin:/usr/local/sbin:/Developer/usr/bin/:/usr/local/bin:/usr/local/apache-maven-3.0.2/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/paulcowan/bin
-
+# export PATH=/usr/local/Cellar/ctags/5.8/bin/:/Users/paulcowan/projects/doctorjs/bin:/usr/local/Cellar/mongodb/2.0.4-x86_64/bin/:/Developer/usr/bin/:/usr/local/bin:/usr/local/apache-maven-3.0.2/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/paulcowan/bin:/usr/local/sbin:/Developer/usr/bin/:/usr/local/bin:/usr/local/apache-maven-3.0.2/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Users/paulcowan/bin
+# 
 . ~/bash/env
 . ~/bash/config
 . ~/bash/aliases
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 plugins=(zsh-syntax-highlighting)
 

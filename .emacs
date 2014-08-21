@@ -20,6 +20,7 @@
                      magit
                      minitest
                      color-theme
+                     clojure-mode
                      rvm))
 
 (load-file "~/.emacs.d/init.el")
@@ -173,7 +174,6 @@
 (require 'prelude-ruby)
 (require 'prelude-scss)
 (require 'prelude-coffee)
-(require 'prelude-clojure)
 (require 'prelude-ido)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
