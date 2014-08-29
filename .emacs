@@ -1,7 +1,6 @@
 (require 'package)
 ; list the packages you want
 (setq package-list '(cider
-                     clojure-mode
                      autopair
                      flycheck
                      flycheck-hdevtools
@@ -20,7 +19,6 @@
                      magit
                      minitest
                      color-theme
-                     clojure-mode
                      rvm))
 
 (load-file "~/.emacs.d/init.el")
@@ -125,12 +123,12 @@
 
 ;; This gives you a tab of 2 spaces
 (custom-set-variables '(coffee-tab-width 2))
+(require 'rvm)
+(add-hook 'ruby-mode-hook
+          (lambda () (rvm-activate-corresponding-ruby)))
 
 (require 'minitest)
 (add-hook 'ruby-mode-hook 'minitest-mode)
-
-(add-hook 'ruby-mode-hook
-          (lambda () (rvm-activate-corresponding-ruby)))
 
 (require 'color-theme)
 (color-theme-initialize)
@@ -170,11 +168,27 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(require 'prelude-common-lisp)
+; (require 'prelude-clojure)
 (require 'prelude-ruby)
 (require 'prelude-scss)
 (require 'prelude-coffee)
 (require 'prelude-ido)
+(require 'prelude-js)
+(require 'cider)
+(setq cider-popup-stacktraces nil)
+
+(setq js-indent-level 2)
+
+(setq ruby-indent-tabs-mode nil)
+(setq ruby-indent-level 2)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (require 'handlebars-mode)
+
+;; fix the PATH variable
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(when window-system (set-exec-path-from-shell-PATH))
