@@ -6,8 +6,6 @@
                      flycheck-hdevtools
                      markdown-mode
                      sass-mode
-                     evil
-                     evil-leader
                      smartparens
                      projectile
                      rainbow-delimiters
@@ -15,10 +13,10 @@
                      git-gutter
                      gist
                      paredit
-                     evil-surround
                      magit
                      minitest
                      color-theme
+                     ag
                      rvm))
 
 (load-file "~/.emacs.d/init.el")
@@ -89,11 +87,7 @@
       `((".*" ,user-temporary-file-directory t)))
 (setq create-lockfiles nil)
 
-;; surround
-(require 'evil-surround)
-(global-evil-surround-mode 1)
 
-; General UI stuff
 (global-linum-mode t)
 (global-hl-line-mode t)
 (setq inhibit-startup-message t)
@@ -123,12 +117,6 @@
 
 ;; This gives you a tab of 2 spaces
 (custom-set-variables '(coffee-tab-width 2))
-(require 'rvm)
-(add-hook 'ruby-mode-hook
-          (lambda () (rvm-activate-corresponding-ruby)))
-
-(require 'minitest)
-(add-hook 'ruby-mode-hook 'minitest-mode)
 
 (require 'color-theme)
 (color-theme-initialize)
@@ -144,20 +132,20 @@
 ;; make side by side buffers function the same as the main window
 (setq truncate-partial-width-windows nil)
 
-(require 'evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(evil-leader/set-key
-  "." 'eval-buffer
-  "," 'projectile-find-file
-  "t" 'dired-jump
-  "c" 'comment-or-uncomment-region
-  "w" 'save-buffer
-  "b" 'switch-to-buffer
-  "k" 'kill-buffer)
-
-(require 'evil)
-(evil-mode t)
+; (require 'evil-leader)
+; (global-evil-leader-mode)
+; (evil-leader/set-leader ",")
+; (evil-leader/set-key
+;   "." 'eval-buffer
+;   "," 'projectile-find-file
+;   "t" 'dired-jump
+;   "c" 'comment-or-uncomment-region
+;   "w" 'save-buffer
+;   "b" 'switch-to-buffer
+;   "k" 'kill-buffer)
+; 
+; (require 'evil)
+; (evil-mode t)
 
 (require 'rainbow-delimiters nil)
 (global-rainbow-delimiters-mode t)
@@ -168,6 +156,7 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+(require 'ag)
 ; (require 'prelude-clojure)
 (require 'prelude-ruby)
 (require 'prelude-scss)
@@ -182,6 +171,13 @@
 (setq ruby-indent-tabs-mode nil)
 (setq ruby-indent-level 2)
 
+(require 'rvm)
+(add-hook 'ruby-mode-hook
+          (lambda () (rvm-activate-corresponding-ruby)))
+
+(require 'minitest)
+(add-hook 'ruby-mode-hook 'minitest-mode)
+
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (require 'handlebars-mode)
 
@@ -192,3 +188,11 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (when window-system (set-exec-path-from-shell-PATH))
+
+(global-set-key "%" 'match-paren)
+    (defun match-paren (arg)
+      "Go to the matching paren if on a paren; otherwise insert %."
+      (interactive "p")
+      (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+            ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+            (t (self-insert-command (or arg 1)))))

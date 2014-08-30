@@ -41,5 +41,4 @@ source $ZSH/oh-my-zsh.sh
 . ~/bash/aliases
 
 plugins=(zsh-syntax-highlighting)
-
-set -o vi
+set -o emacs
