@@ -16,8 +16,12 @@
                      magit
                      minitest
                      color-theme
-                     ag
-                     rvm))
+                     rbenv
+                     ag))
+
+;; Allow hash to be entered
+(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+(tool-bar-mode -1)
 
 (load-file "~/.emacs.d/init.el")
 ; list the repositories containing them
@@ -132,21 +136,6 @@
 ;; make side by side buffers function the same as the main window
 (setq truncate-partial-width-windows nil)
 
-; (require 'evil-leader)
-; (global-evil-leader-mode)
-; (evil-leader/set-leader ",")
-; (evil-leader/set-key
-;   "." 'eval-buffer
-;   "," 'projectile-find-file
-;   "t" 'dired-jump
-;   "c" 'comment-or-uncomment-region
-;   "w" 'save-buffer
-;   "b" 'switch-to-buffer
-;   "k" 'kill-buffer)
-; 
-; (require 'evil)
-; (evil-mode t)
-
 (require 'rainbow-delimiters nil)
 (global-rainbow-delimiters-mode t)
 
@@ -163,20 +152,25 @@
 (require 'prelude-coffee)
 (require 'prelude-ido)
 (require 'prelude-js)
-(require 'cider)
-(setq cider-popup-stacktraces nil)
 
 (setq js-indent-level 2)
 
 (setq ruby-indent-tabs-mode nil)
 (setq ruby-indent-level 2)
 
-(require 'rvm)
-(add-hook 'ruby-mode-hook
-          (lambda () (rvm-activate-corresponding-ruby)))
-
 (require 'minitest)
 (add-hook 'ruby-mode-hook 'minitest-mode)
+
+(require 'rbenv)
+(global-rbenv-mode)
+(rbenv-use-global)
+
+(autoload 'enh-ruby-mode "enh-ruby-mode" "" t)
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+
+(setq enh-ruby-program rbenv-ruby-shim)
+
+(add-hook 'enh-ruby-mode-hook 'minitest-mode)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (require 'handlebars-mode)
@@ -190,9 +184,29 @@
 (when window-system (set-exec-path-from-shell-PATH))
 
 (global-set-key "%" 'match-paren)
-    (defun match-paren (arg)
-      "Go to the matching paren if on a paren; otherwise insert %."
-      (interactive "p")
-      (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-            ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-            (t (self-insert-command (or arg 1)))))
+(defun match-paren (arg)
+  "Go to the matching paren if on a paren; otherwise insert %."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+        (t (self-insert-command (or arg 1)))))
+
+; cider config
+(require 'cider)
+(setq nrepl-hide-special-buffers t)
+
+(global-set-key (kbd "C->") 'vimmy-indent)
+(defun vimmy-indent () 
+ (interactive)
+ (indent-according-to-mode) 
+ (indent-rigidly 
+   (region-beginning) 
+   (region-end) 2))
+
+(global-set-key (kbd "C-<") 'vimmy-unindent)
+(defun vimmy-unindent () 
+ (interactive)
+ (indent-according-to-mode) 
+ (indent-rigidly 
+   (region-beginning) 
+   (region-end) -2))

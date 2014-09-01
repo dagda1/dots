@@ -42,3 +42,4 @@ source $ZSH/oh-my-zsh.sh
 
 plugins=(zsh-syntax-highlighting)
 set -o emacs
+source $HOME/.zshenv
