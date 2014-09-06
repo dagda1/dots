@@ -4,24 +4,32 @@
                      auto-complete
                      autopair 
                      ac-cider 
-                     cider 
+                     cider
+                     4clojure
+                     clojure-mode
+                     clojure-cheatsheet
+                     clojure-snippets
+                     clojurescript-mode
+                     clj-refactor
+                     elein
+                     paredit
+                     popup
+                     rainbow-delimiters  ;; Mode for alternating paren colors
+                     rainbow-mode
                      color-theme 
                      zenburn-theme
                      autopair
                      flycheck
                      flycheck-hdevtools
-                     clojure-mode
                      ruby-mode
                      coffee-mode
                      ido
                      markdown-mode
                      sass-mode
                      projectile
-                     rainbow-delimiters
                      magit
                      git-gutter
                      gist
-                     paredit
                      magit
                      minitest
                      rbenv
@@ -103,7 +111,6 @@
       `((".*" ,user-temporary-file-directory t)))
 (setq create-lockfiles nil)
 
-
 (global-linum-mode t)
 (global-hl-line-mode t)
 (setq inhibit-startup-message t)
@@ -157,7 +164,7 @@
 
 (provide 'prelude-ido)
 
-(require 'rainbow-delimiters nil)
+(require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 
 (require 'icomplete)
@@ -181,14 +188,7 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Cheffile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
-; (require 'prelude-clojure)
-; (require 'prelude-ruby)
-; (require 'prelude-scss)
-; (require 'prelude-coffee)
-; (require 'prelude-ido)
-; (require 'prelude-js)
-; (require 'prelude-key-chord)
-; 
+
 (setq js-indent-level 2)
 
 (setq ruby-indent-tabs-mode nil)
@@ -249,18 +249,193 @@
     "Evaluate the expression preceding point and append result."
     (interactive)
     (let ((last-sexp (cider-last-sexp)))
+
 ;; we have to be sure the evaluation won't result in an error
 (cider-eval-and-get-value last-sexp)
 (with-current-buffer (current-buffer)
   (insert ";;=>"))
 (cider-interactive-eval-print last-sexp)))
 
+(require 'paredit)
+
 ; cider config
 (require 'cider)
 (setq nrepl-hide-special-buffers t)
 (setq cider-show-error-buffer nil)
+
 (define-key clojure-mode-map (kbd "C-o j") 'cider-jack-in)
 (define-key clojure-mode-map (kbd "C-o J") 'cider-restart)
-(define-key clojure-mode-map (kbd "C-o y") 'cider-eval-last-sexp-and-append)
 
-(add-hook 'clojure-mode-hook #'enable-paredit-mode)
+(add-hook 'prog-mode-hook  'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+
+(define-clojure-indent
+  (defroutes 'defun)
+  (GET 2)
+  (POST 2)
+  (PUT 2)
+  (DELETE 2)
+  (HEAD 2)
+  (ANY 2)
+  (context 2))
+
+(defun cider-eval-last-sexp-and-append ()
+  "Evaluate the expression preceding point and append result."
+  (interactive)
+  (let* ((last-sexp (if (region-active-p)
+                       (buffer-substring (region-beginning) (region-end))
+                     (cider-last-sexp)))
+         (last-results (cider-eval-and-get-value last-sexp)))
+
+    (with-current-buffer (current-buffer)
+      (comment-indent)
+      (insert " => ")
+      (insert (prin1-to-string last-results)))))
+
+(defun cider-send-and-evaluate-sexp ()
+   "Sends the s-expression located before the point or the active
+region to the REPL and evaluates it. Then the Clojure buffer is
+activated as if nothing happened."
+   (interactive)
+   (if (not (region-active-p))
+       (cider-insert-last-sexp-in-repl)
+     (cider-insert-in-repl
+      (buffer-substring (region-beginning) (region-end)) nil))
+   (cider-switch-to-repl-buffer)
+   (cider-repl-closing-return)
+   (cider-switch-to-last-clojure-buffer)
+   (message ""))
+
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (local-set-key (kbd "M-e") 'forward-sexp)
+            (local-set-key (kbd "M-a") 'backward-sexp)
+            (local-set-key (kbd "C-c C-v") 'cider-eval-last-sexp-and-append)
+            (local-set-key (kbd "C-c C-S-v") 'cider-send-and-evaluate-sexp)))
+
+(defun paredit-delete-indentation (&optional arg)
+    "Handle joining lines that end in a comment."
+    (interactive "*P")
+    (let (comt)
+      (save-excursion
+        (move-beginning-of-line (if arg 1 0))
+        (when (skip
+-syntax-forward "^<" (point-at-eol))
+          (setq comt (delete-and-extract-region (point) (point-at-eol)))))
+      (delete-indentation arg)
+      (when comt
+        (save-excursion
+          (move-end-of-line 1)
+          (insert " ")
+          (insert comt)))))
+
+  (defun paredit-remove-newlines ()
+    "Removes extras whitespace and newlines from the current point
+  to the next parenthesis."
+    (interactive)
+    (let ((up-to (point))
+          (from (re-search-forward "[])}]")))
+       (backward-char)
+       (while (> (point) up-to)
+         (paredit-delete-indentation))))
+
+  (define-key paredit-mode-map (kbd "C-^") 'paredit-remove-newlines)
+  (define-key paredit-mode-map (kbd "M-^") 'paredit-delete-indentation)
+
+(defun turn-on-paredit () (paredit-mode t))
+
+(add-hook 'emacs-lisp-mode-hook       'turn-on-paredit)
+(add-hook 'lisp-mode-hook             'turn-on-paredit)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-paredit)
+(add-hook 'scheme-mode-hook           'turn-on-paredit)
+(add-hook 'clojure-mode-hook          'turn-on-paredit)
+(add-hook 'cider-repl-mode-hook       'turn-on-paredit)
+(add-hook 'sibiliant-mode-hook        'turn-on-paredit)
+
+(defvar electrify-return-match
+    "[\]}\)\"]"
+    "If this regexp matches the text after the cursor, do an \"electric\" return.")
+
+(defun electrify-return-if-match (arg)
+    "If the text after the cursor matches `electrify-return-match' then
+  open and indent an empty line between the cursor and the text.  Move the
+  cursor to the new line."
+    (interactive "P")
+    (let ((case-fold-search nil))
+      (if (looking-at electrify-return-match)
+          (save-excursion (newline-and-indent)))
+      (newline arg)
+      (indent-according-to-mode)))
+(add-hook 'paredit-mode-hook
+        (lambda ()
+          (local-set-key (kbd "RET") 'electrify-return-if-match)))
+
+(require 'auto-complete-config)
+(setq ac-delay 0.0)
+(setq ac-quick-help-delay 0.5)
+(ac-config-default)
+
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-mode))
+
+(when (package-installed-p '4clojure)
+  (defadvice 4clojure-open-question (around 4clojure-open-question-around)
+    "Start a cider/nREPL connection if one hasn't already been started when
+    opening 4clojure questions."
+    ad-do-it
+    (unless cider-current-clojure-buffer
+      (cider-jack-in)))
+
+   (define-key clojure-mode-map (kbd "<f2> a") '4clojure-check-answers)
+   (define-key clojure-mode-map (kbd "<f2> n") '4clojure-next-question)
+   (define-key clojure-mode-map (kbd "<f2> p") '4clojure-previous-question))
+
+(defvar ha-4clojure-place-file (concat user-emacs-directory "4clojure-place.txt"))
+
+(defun ha-file-to-string (file)
+  "Read the contents of FILE and return as a string."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-substring-no-properties (point-min) (point-max))))
+
+(defun ha-file-to-list (file)
+  "Return a list of lines in FILE."
+  (split-string (ha-file-to-string file) "\n" t))
+
+(defun ha-4clojure-last-project (file)
+  (interactive "f")
+  (if (file-exists-p file)
+      (car (ha-file-to-list file))
+    "1"))
+
+(defun 4clojure-start-session ()
+  (interactive)
+  (4clojure-login "geekdad")
+  (4clojure-open-question
+   (ha-4clojure-last-project ha-4clojure-place-file)))
+
+(global-set-key (kbd "<f2> s") '4clojure-start-session)
+
+(defun ha-string-to-file (string file)
+  (interactive "sEnter the string: \nFFile to save to: ")
+  (with-temp-file file
+    (insert string)))
+
+(when (package-installed-p '4clojure)
+  (defun ha-4clojure-store-place (num)
+      (ha-string-to-file (int-to-string num) ha-4clojure-place-file))
+
+  (defadvice 4clojure-next-question (after ha-4clojure-next-question)
+    "Save the place for each question you progress to."
+    (ha-4clojure-store-place (4clojure/problem-number-of-current-buffer)))
+
+  (defadvice 4clojure-open-question (after ha-4clojure-next-question)
+    "Save the place for each question you progress to."
+    (ha-4clojure-store-place (4clojure/problem-number-of-current-buffer)))
+
+  (ad-activate '4clojure-next-question)
+  (ad-activate '4clojure-open-question))
