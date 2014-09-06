@@ -1,12 +1,21 @@
 (require 'package)
 ; list the packages you want
-(setq package-list '(cider
+(setq package-list '(company
+                     auto-complete
+                     autopair 
+                     ac-cider 
+                     cider 
+                     color-theme 
+                     zenburn-theme
                      autopair
                      flycheck
                      flycheck-hdevtools
+                     clojure-mode
+                     ruby-mode
+                     coffee-mode
+                     ido
                      markdown-mode
                      sass-mode
-                     smartparens
                      projectile
                      rainbow-delimiters
                      magit
@@ -15,8 +24,9 @@
                      paredit
                      magit
                      minitest
-                     color-theme
                      rbenv
+                     smex
+                     flx-ido
                      ag))
 
 ;; Allow hash to be entered
@@ -116,9 +126,6 @@
 (setq-default default-tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;; automatically clean up bad whitespace
-(setq whitespace-action '(auto-cleanup))
-
 ;; This gives you a tab of 2 spaces
 (custom-set-variables '(coffee-tab-width 2))
 
@@ -127,31 +134,59 @@
 
 (set-default-font "M+ 1mn-15")
 
-;; See http://www.delorie.com/gnu/docs/elisp-manual-21/elisp_620.html
-;; and http://www.gnu.org/software/emacs/manual/elisp.pdf
-;; disable line wrap
-(setq default-truncate-lines t)
-;; make side by side buffers function the same as the main window
-(setq truncate-partial-width-windows nil)
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-enable-caching nil)
+
+(require 'ido)
+
+(ido-mode +1)
+
+;;; smarter fuzzy matching for ido
+(flx-ido-mode +1)
+;; disable ido faces to see flx highlights
+(setq ido-use-faces nil)
+
+;;; smex, remember recently and most frequently used commands
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+(provide 'prelude-ido)
 
 (require 'rainbow-delimiters nil)
 (global-rainbow-delimiters-mode t)
 
 (require 'icomplete)
 
-(smartparens-global-mode nil)
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'ag)
-(require 'prelude-clojure)
-(require 'prelude-ruby)
-(require 'prelude-scss)
-(require 'prelude-coffee)
-(require 'prelude-ido)
-(require 'prelude-js)
-(require 'prelude-key-chord)
+(autoload 'ruby-mode "ruby-mode" nil t)
 
+(add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.jbuilder\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.prawn\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Cheffile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
+; (require 'prelude-clojure)
+; (require 'prelude-ruby)
+; (require 'prelude-scss)
+; (require 'prelude-coffee)
+; (require 'prelude-ido)
+; (require 'prelude-js)
+; (require 'prelude-key-chord)
+; 
 (setq js-indent-level 2)
 
 (setq ruby-indent-tabs-mode nil)
