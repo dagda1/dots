@@ -123,9 +123,7 @@
 (custom-set-variables '(coffee-tab-width 2))
 
 (require 'color-theme)
-(color-theme-initialize)
-(load-file "~/.emacs.d/themes/color-theme-railscasts.el")
-(color-theme-railscasts)
+(load-theme 'wombat t)
 
 (set-default-font "M+ 1mn-15")
 
@@ -146,12 +144,13 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (require 'ag)
-; (require 'prelude-clojure)
+(require 'prelude-clojure)
 (require 'prelude-ruby)
 (require 'prelude-scss)
 (require 'prelude-coffee)
 (require 'prelude-ido)
 (require 'prelude-js)
+(require 'prelude-key-chord)
 
 (setq js-indent-level 2)
 
@@ -191,10 +190,6 @@
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
 
-; cider config
-(require 'cider)
-(setq nrepl-hide-special-buffers t)
-
 (global-set-key (kbd "C->") 'vimmy-indent)
 (defun vimmy-indent () 
  (interactive)
@@ -210,3 +205,23 @@
  (indent-rigidly 
    (region-beginning) 
    (region-end) -2))
+
+(global-set-key "\M-/" 'hippie-expand)
+;; Append result of evaluating previous expression (Clojure):
+  (defun cider-eval-last-sexp-and-append ()
+    "Evaluate the expression preceding point and append result."
+    (interactive)
+    (let ((last-sexp (cider-last-sexp)))
+;; we have to be sure the evaluation won't result in an error
+(cider-eval-and-get-value last-sexp)
+(with-current-buffer (current-buffer)
+  (insert ";;=>"))
+(cider-interactive-eval-print last-sexp)))
+
+; cider config
+(require 'cider)
+(setq nrepl-hide-special-buffers t)
+(setq cider-show-error-buffer nil)
+(define-key clojure-mode-map (kbd "C-o j") 'cider-jack-in)
+(define-key clojure-mode-map (kbd "C-o J") 'cider-restart)
+(define-key clojure-mode-map (kbd "C-o y") 'cider-eval-last-sexp-and-append)
