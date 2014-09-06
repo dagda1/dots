@@ -139,7 +139,7 @@
 
 (require 'icomplete)
 
-(smartparens-global-mode t)
+(smartparens-global-mode nil)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
