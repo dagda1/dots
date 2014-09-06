@@ -27,6 +27,8 @@
                      rbenv
                      smex
                      flx-ido
+                     js2-mode
+                     key-chord
                      ag))
 
 ;; Allow hash to be entered
@@ -260,3 +262,5 @@
 (define-key clojure-mode-map (kbd "C-o j") 'cider-jack-in)
 (define-key clojure-mode-map (kbd "C-o J") 'cider-restart)
 (define-key clojure-mode-map (kbd "C-o y") 'cider-eval-last-sexp-and-append)
+
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
