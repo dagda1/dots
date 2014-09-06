@@ -245,10 +245,10 @@
 
 (global-set-key "\M-/" 'hippie-expand)
 ;; Append result of evaluating previous expression (Clojure):
-  (defun cider-eval-last-sexp-and-append ()
-    "Evaluate the expression preceding point and append result."
-    (interactive)
-    (let ((last-sexp (cider-last-sexp)))
+(defun cider-eval-last-sexp-and-append ()
+  "Evaluate the expression preceding point and append result."
+  (interactive)
+  (let ((last-sexp (cider-last-sexp)))
 
 ;; we have to be sure the evaluation won't result in an error
 (cider-eval-and-get-value last-sexp)
@@ -265,6 +265,7 @@
 
 (define-key clojure-mode-map (kbd "C-o j") 'cider-jack-in)
 (define-key clojure-mode-map (kbd "C-o J") 'cider-restart)
+(define-key clojure-mode-map (kbd "C-o y") 'cider-eval-last-sexp-and-append)
 
 (add-hook 'prog-mode-hook  'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
@@ -278,19 +279,6 @@
   (HEAD 2)
   (ANY 2)
   (context 2))
-
-(defun cider-eval-last-sexp-and-append ()
-  "Evaluate the expression preceding point and append result."
-  (interactive)
-  (let* ((last-sexp (if (region-active-p)
-                       (buffer-substring (region-beginning) (region-end))
-                     (cider-last-sexp)))
-         (last-results (cider-eval-and-get-value last-sexp)))
-
-    (with-current-buffer (current-buffer)
-      (comment-indent)
-      (insert " => ")
-      (insert (prin1-to-string last-results)))))
 
 (defun cider-send-and-evaluate-sexp ()
    "Sends the s-expression located before the point or the active
@@ -310,7 +298,6 @@ activated as if nothing happened."
           (lambda ()
             (local-set-key (kbd "M-e") 'forward-sexp)
             (local-set-key (kbd "M-a") 'backward-sexp)
-            (local-set-key (kbd "C-c C-v") 'cider-eval-last-sexp-and-append)
             (local-set-key (kbd "C-c C-S-v") 'cider-send-and-evaluate-sexp)))
 
 (defun paredit-delete-indentation (&optional arg)
@@ -414,7 +401,7 @@ activated as if nothing happened."
 
 (defun 4clojure-start-session ()
   (interactive)
-  (4clojure-login "geekdad")
+  (4clojure-login "dagda1")
   (4clojure-open-question
    (ha-4clojure-last-project ha-4clojure-place-file)))
 
