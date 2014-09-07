@@ -18,7 +18,6 @@
                      rainbow-mode
                      color-theme 
                      zenburn-theme
-                     autopair
                      flycheck
                      flycheck-hdevtools
                      ruby-mode
@@ -37,6 +36,7 @@
                      flx-ido
                      js2-mode
                      key-chord
+                     smartparens
                      ag))
 
 ;; Allow hash to be entered
@@ -357,17 +357,10 @@ activated as if nothing happened."
         (lambda ()
           (local-set-key (kbd "RET") 'electrify-return-if-match)))
 
-(require 'auto-complete-config)
-(setq ac-delay 0.0)
-(setq ac-quick-help-delay 0.5)
-(ac-config-default)
-
 (require 'ac-cider)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-mode))
 
 (when (package-installed-p '4clojure)
   (defadvice 4clojure-open-question (around 4clojure-open-question-around)
@@ -426,3 +419,5 @@ activated as if nothing happened."
 
   (ad-activate '4clojure-next-question)
   (ad-activate '4clojure-open-question))
+
+(show-smartparens-global-mode +1)
