@@ -21,6 +21,7 @@
                      flycheck
                      flycheck-hdevtools
                      ruby-mode
+                     ruby-tools
                      coffee-mode
                      ido
                      markdown-mode
@@ -167,13 +168,15 @@
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 
-(require 'icomplete)
+; (require 'icomplete)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; ruby config
 (require 'ag)
-(autoload 'ruby-mode "ruby-mode" nil t)
+; (autoload 'ruby-mode "ruby-mode" nil t)
+(require 'ruby-tools)
 
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
@@ -188,8 +191,6 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Cheffile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Berksfile" . ruby-mode))
-
-(setq js-indent-level 2)
 
 (setq ruby-indent-tabs-mode nil)
 (setq ruby-indent-level 2)
@@ -208,8 +209,28 @@
 
 (add-hook 'enh-ruby-mode-hook 'minitest-mode)
 
+;; js config
+(setq js-indent-level 2)
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (require 'handlebars-mode)
+
+;; autopair
+(require 'autopair)
+
+(defvar autopair-modes '(r-mode ruby-mode coffee-mode js-mode))
+(defun turn-on-autopair-mode () (autopair-mode 1))
+(dolist (mode autopair-modes) (add-hook (intern (concat (symbol-name mode) "-hook")) 'turn-on-autopair-mode))
+
+(require 'paredit)
+(defadvice paredit-mode (around disable-autopairs-around (arg))
+  "Disable autopairs mode if paredit-mode is turned on"
+  ad-do-it
+  (if (null ad-return-value)
+      (autopair-mode 1)
+    (autopair-mode 0)
+    ))
+
+(ad-activate 'paredit-mode)
 
 ;; fix the PATH variable
 (defun set-exec-path-from-shell-PATH ()
