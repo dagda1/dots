@@ -21,11 +21,12 @@
                      flycheck
                      flycheck-hdevtools
                      ruby-mode
+                     ruby-end
                      ruby-tools
                      coffee-mode
                      ido
                      markdown-mode
-                     sass-mode
+                     scss-mode
                      projectile
                      magit
                      git-gutter
@@ -177,6 +178,7 @@
 (require 'ag)
 ; (autoload 'ruby-mode "ruby-mode" nil t)
 (require 'ruby-tools)
+(require 'ruby-end)
 
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
