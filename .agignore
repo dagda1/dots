@@ -1,0 +1,12 @@
+/log/
+/logs/
+/tmp/
+/images/
+/vendor/
+/dist/
+*.tmp*
+*.min.*
+*.plist
+*.pdf
+*.md
+*.log
