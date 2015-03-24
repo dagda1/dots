@@ -10,3 +10,10 @@
 *.pdf
 *.md
 *.log
+*.eot
+/app/fonts/ss-standard/ss-standard.css
+/app/fonts/ss-standard/ss-standard.css
+/app/assets/fonts/ss-symbolicons-block/ss-symbolicons-block.css
+*ss*.css
+*symbol*.css
+*symbol*.scss
