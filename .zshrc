@@ -41,5 +41,5 @@ plugins=(zsh-syntax-highlighting)
 set -o emacs
 source $HOME/.zshenv
 
-export NVM_DIR="/Users/paul/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

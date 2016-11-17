@@ -15,12 +15,16 @@ echo "...done"
 for file in $files; do
     if [ ! -e "$file" ]
     then
-	echo "$file does not exist."; echo
-	continue
+	      echo "$file does not exist."; echo
+	      continue
     fi
+
     echo "Moving any existing dotfiles from ~ to $olddir"
+
     mv ~/$file ~/dotfiles_old/
+
     echo "Creating symlink to $file in home directory."
+
     ln -s $dir/$file ~/$file
 done
 
