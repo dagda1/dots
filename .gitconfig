@@ -97,7 +97,7 @@
   default = tracking
 [core]
   autocrlf = false
-  editor = vim
+	editor = vim
 	excludesfile = /Users/paulcowan/.gitignore
 [advice]
   statusHints = false
@@ -114,3 +114,7 @@
 [user]
 	name = dagda1
 	email = dagda1@scotalt.net
+[gerrit "default"]
+	host = gerrit.sandbox.extranet.group
+	port = 29418
+	user = paul.cowan
