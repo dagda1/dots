@@ -30,11 +30,10 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 . $HOME/.zshenv
-. ~/bash/env
-
-source $ZSH/oh-my-zsh.sh
 
 plugins=(zsh-nvm git syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
 
 set -o emacs
 
