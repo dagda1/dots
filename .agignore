@@ -3,7 +3,9 @@
 /tmp/
 /images/
 /vendor
+/build
 bundles/
+/docs/
 /dist/
 *.tmp*
 *.min.*
