@@ -11,3 +11,5 @@ export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
 
 export NVM_AUTO_USE=true
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

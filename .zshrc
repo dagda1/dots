@@ -38,3 +38,4 @@ source $ZSH/oh-my-zsh.sh
 set -o emacs
 
 . ~/.aliases
+source $HOME/.zshenv
