@@ -2,7 +2,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files=".gitignore_global .agignore .gitconfig .gitignore .zshenv .zshrc"
+files=".aliases .gitignore_global .agignore .gitconfig .gitignore .zshenv .zshrc"
 
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir

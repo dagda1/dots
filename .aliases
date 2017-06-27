@@ -1,0 +1,79 @@
+alias reload='source ~/.zshrc'
+alias home='cd ~/'
+alias blog='cd ~/projects/blog/'
+alias pr='cd ~/projects'
+alias h='history'
+alias wget="curl -O"
+alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias ema='open -a /Applications/Emacs.app $1'
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias em="emacsclient -t"
+# ls
+alias ls="ls -F"
+alias l="ls -lAh"
+alias ll="ls -l"
+alias la='ls -A'
+
+#ruby
+alias be="bundle exec"
+
+# git
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
+
+#postgres
+alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pg-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+
+#redis
+alias redis-start='sudo launchctl start io.redis.redis-server'
+alias redis-stop='sudo launchctl stop io.redis.redis-server'
+
+function extract()      # Handy Extract Program.
+{
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xvjf $1     ;;
+             *.tar.gz)    tar xvzf $1     ;;
+             *.bz2)       bunzip2 $1      ;;
+             *.rar)       unrar x $1      ;;
+             *.gz)        gunzip $1       ;;
+             *.tar)       tar xvf $1      ;;
+             *.tbz2)      tar xvjf $1     ;;
+             *.tgz)       tar xvzf $1     ;;
+             *.zip)       unzip $1        ;;
+             *.Z)         uncompress $1   ;;
+             *.7z)        7z x $1         ;;
+             *)           echo "'$1' cannot be extracted via >extract<" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+function ff()
+{
+  findIt f $1
+}
+
+function fd()
+{
+  findIt d $1
+}
+
+function findIt ()
+{
+  find . -type $1 -iname '*'$2*'*' -ls;
+}
+
+function kill_process()
+{
+   kill -9 $(lsof -i:$1 -t) 2> /dev/null
+}
