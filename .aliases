@@ -2,6 +2,7 @@ alias reload='source ~/.zshrc'
 alias home='cd ~/'
 alias blog='cd ~/projects/blog/'
 alias pr='cd ~/projects'
+alias dsf="cd ~/projects/ds/frontend"
 alias h='history'
 alias wget="curl -O"
 alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
@@ -9,7 +10,7 @@ alias ema='open -a /Applications/Emacs.app $1'
 alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias em="emacsclient -t"
 # ls
-alias ls="ls -F"
+alias ls="ls -F -a"
 alias l="ls -lAh"
 alias ll="ls -l"
 alias la='ls -A'
@@ -32,10 +33,6 @@ alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG
 #postgres
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-
-#redis
-alias redis-start='sudo launchctl start io.redis.redis-server'
-alias redis-stop='sudo launchctl stop io.redis.redis-server'
 
 function extract()      # Handy Extract Program.
 {

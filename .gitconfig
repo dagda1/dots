@@ -112,9 +112,5 @@
 [credential]
 	helper = osxkeychain
 [user]
-	name = dagda1
-	email = dagda1@scotalt.net
-[gerrit "default"]
-	host = gerrit.sandbox.extranet.group
-	port = 29418
-	user = paul.cowan
+	name = Paul Cowan
+	email = paul.cowan@bjss.com

@@ -4,10 +4,11 @@
 /images/
 /vendor
 /build
+/lib/
+/node_modules/
 bundles/
 /docs/
 /dist/
-/lib/index.js
 *.tmp*
 *.min.*
 *.plist
