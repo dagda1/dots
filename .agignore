@@ -6,8 +6,10 @@
 /build
 /lib/
 /node_modules/
+/__snapshots__/
 bundles/
 /docs/
+dist
 /dist/
 *.tmp*
 *.min.*
@@ -24,3 +26,4 @@ bundles/
 *symbol*.css
 *symbol*.scss
 *-symbolicons.*
+*.js.map*

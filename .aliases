@@ -3,6 +3,7 @@ alias home='cd ~/'
 alias blog='cd ~/projects/blog/'
 alias pr='cd ~/projects'
 alias ds="cd ~/projects/ds"
+alias dsf="cd ~/projects/ds"
 alias dsf="cd ~/projects/ds/frontend/application"
 alias h='history'
 alias wget="curl -O"
