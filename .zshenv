@@ -9,8 +9,12 @@ export GIT_EDITOR="emacsclient -c -a emacs"
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
-export PATH="$(yarn global bin):$PATH"
+
+if [ -x "$(command -v yarn)" ]; then
+    export PATH="$(yarn global bin):$PATH"
+fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+
 eval "$(rbenv init -)"
 export NVM_AUTO_USE=true
