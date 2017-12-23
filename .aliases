@@ -2,7 +2,8 @@ alias reload='source ~/.zshrc'
 alias home='cd ~/'
 alias blog='cd ~/projects/blog/'
 alias pr='cd ~/projects'
-alias dsf="cd ~/projects/ds/frontend"
+alias ds="cd ~/projects/ds"
+alias dsf="cd ~/projects/ds/digital/frontend"
 alias h='history'
 alias wget="curl -O"
 alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
@@ -14,6 +15,12 @@ alias ls="ls -F -a"
 alias l="ls -lAh"
 alias ll="ls -l"
 alias la='ls -A'
+
+# yarn
+alias yi="yarn install"
+alias ya="yarn add"
+alias yt="yarn test"
+alias ys="yarn start"
 
 #ruby
 alias be="bundle exec"
