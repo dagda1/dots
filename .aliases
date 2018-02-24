@@ -86,3 +86,16 @@ function kill_process()
 {
    kill -9 $(lsof -i:$1 -t) 2> /dev/null
 }
+
+function sizes()
+{
+   du -sh *  | grep -E "\dG"
+}
+
+function docker-nuke()
+{
+# Delete all containers
+  docker rm $(docker ps -a -q)
+  # Delete all images
+  docker rmi $(docker images -q)
+}
