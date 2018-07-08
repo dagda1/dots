@@ -26,6 +26,7 @@ alias ys="yarn start"
 alias yb="yarn build"
 alias yib="yi && yb"
 alias yibs="yib && ys"
+alias yd="yarn deploy"
 
 #ruby
 alias be="bundle exec"
@@ -94,8 +95,8 @@ function sizes()
 
 function docker-nuke()
 {
-# Delete all containers
-  docker rm $(docker ps -a -q)
+  # Delete all containers
+  docker rm $(docker ps -a -q) -f
   # Delete all images
-  docker rmi $(docker images -q)
+  docker rmi $(docker images -q) -f
 }
