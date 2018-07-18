@@ -11,6 +11,7 @@ alias ema='open -a /Applications/Emacs.app $1'
 alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias em="emacsclient -t"
 alias cutt="cd ~/projects/cuttingedge"
+alias c2="cd ~/projects/meridian"
 
 # ls
 alias ls="ls -F -a"
