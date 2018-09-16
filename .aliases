@@ -27,6 +27,7 @@ alias ys="yarn start"
 alias yb="yarn build"
 alias yib="yi && yb"
 alias yibs="yib && ys"
+alias yd="yarn deploy"
 
 #ruby
 alias be="bundle exec"

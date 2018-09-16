@@ -6,7 +6,6 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$PATH:/usr/sbin"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export CC=/usr/bin/gcc
-export GIT_EDITOR="emacsclient -c -a emacs"
 
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
