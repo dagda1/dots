@@ -8,12 +8,13 @@ ZSH_THEME="lambda-gitster"
 plugins=(
     zsh-nvm
     git
-    syntax-highlighting
     iterm2
     colored-man-pages
-    yarn vscode
+    yarn
+    vscode
     frontend-search
     zsh-autosuggestions
+    zsh-history-substring-search
     zsh-syntax-highlighting
 )
 
@@ -22,5 +23,3 @@ source $ZSH/oh-my-zsh.sh
 set -o emacs
 
 . ~/.aliases
-
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
