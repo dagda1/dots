@@ -16,6 +16,7 @@ plugins=(
     zsh-autosuggestions
     zsh-history-substring-search
     zsh-syntax-highlighting
+    npm
 )
 
 source $ZSH/oh-my-zsh.sh
