@@ -29,6 +29,9 @@ alias yib="yi && yb"
 alias yibs="yib && ys"
 alias yd="yarn deploy"
 
+# npm
+alias npmb="npm run build"
+
 #ruby
 alias be="bundle exec"
 
