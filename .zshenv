@@ -14,3 +14,5 @@ export NVM_AUTO_USE=true
 export NPM_TOKEN="ab3da82a-b2b5-4bbc-9601-90661aebd60e"
 export PATH="$HOME/Library/Haskell/OAbin:$PATH"
 export PATH=$PATH:~/.local/bin
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"

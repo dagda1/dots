@@ -17,6 +17,7 @@ plugins=(
     zsh-history-substring-search
     zsh-syntax-highlighting
     npm
+    jsontools
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -24,3 +25,9 @@ source $ZSH/oh-my-zsh.sh
 set -o emacs
 
 . ~/.aliases
+
+. /usr/local/etc/profile.d/z.sh
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
