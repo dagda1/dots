@@ -16,3 +16,4 @@ export PATH="$HOME/Library/Haskell/OAbin:$PATH"
 export PATH=$PATH:~/.local/bin
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+ZSH_DISABLE_COMPFIX="true"
