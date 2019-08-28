@@ -84,7 +84,7 @@ function fd()
 
 function findIt ()
 {
-  find . -type $1 -iname '*'$2*'*' -ls;
+  find . -type $1 -iname "*$2*" -ls;
 }
 
 function kill_process()
