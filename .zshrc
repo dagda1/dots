@@ -22,6 +22,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# disable "sure you want to delete all the files"
+setopt rmstarsilent
+
 set -o emacs
 
 . ~/.aliases
