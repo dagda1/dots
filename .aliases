@@ -87,6 +87,9 @@ function extract()      # Handy Extract Program.
          echo "'$1' is not a valid file"
      fi
 }
+
+alias whatsmyip="curl ifconfig.me"
+
 function ff()
 {
   findIt f $1

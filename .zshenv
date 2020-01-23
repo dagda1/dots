@@ -3,7 +3,7 @@ export PATH=$HOME/bin:$PATH
 export PATH=$PATH:~/bin
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-export PATH="$PATH:/usr/sbin"
+export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export CC=/usr/bin/gcc
 
