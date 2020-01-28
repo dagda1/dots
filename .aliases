@@ -28,6 +28,7 @@ alias yb="yarn build"
 alias yib="yi && yb"
 alias yibs="yib && ys"
 alias yd="yarn deploy"
+alias yp="yarn prepack"
 
 # npm
 alias npmb="npm run build"
@@ -87,6 +88,9 @@ function extract()      # Handy Extract Program.
          echo "'$1' is not a valid file"
      fi
 }
+
+alias whatsmyip="curl ifconfig.me"
+
 function ff()
 {
   findIt f $1
@@ -117,5 +121,8 @@ function docker-nuke()
   docker rm $(docker ps -a -q) -f
   docker rmi $(docker images -q) -f
   docker network rm $(docker network ls -q)
-  docker network ls -q | xargs docker network rm
 }
+
+alias exporter='./gradlew :activiti-bpm-loader:bootRun -Pexport --info'
+alias loader='./gradlew :activiti-bpm-loader:bootRun'
+alias runner='./gradlew :activiti-app:cargoRunLocal --info'

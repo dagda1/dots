@@ -22,14 +22,15 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# disable "sure you want to delete all the files"
+setopt rmstarsilent
+
 set -o emacs
 
 . ~/.aliases
 
 . /usr/local/etc/profile.d/z.sh
 
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
-
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
