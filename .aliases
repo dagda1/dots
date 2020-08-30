@@ -29,6 +29,7 @@ alias yib="yi && yb"
 alias yibs="yib && ys"
 alias yd="yarn deploy"
 alias yp="yarn prepack"
+alias yall="yarn prepack && yarn lint && yarn test"
 
 # npm
 alias npmb="npm run build"
