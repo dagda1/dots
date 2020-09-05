@@ -39,18 +39,6 @@ alias npmb="npm run build"
 #ruby
 alias be="bundle exec"
 
-# git
-alias gl='git pull'
-alias gp='git push'
-alias gd='git diff'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gco='git checkout'
-alias gb='git branch'
-alias gs='git status'
-alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
-alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
-alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 #postgres
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
@@ -126,7 +114,3 @@ function docker-nuke()
   docker rmi $(docker images -q) -f
   docker network rm $(docker network ls -q)
 }
-
-alias exporter='./gradlew :activiti-bpm-loader:bootRun -Pexport --info'
-alias loader='./gradlew :activiti-bpm-loader:bootRun'
-alias runner='./gradlew :activiti-app:cargoRunLocal --info'
