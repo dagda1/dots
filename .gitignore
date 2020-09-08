@@ -2,15 +2,14 @@
 
 # dependencies
 node_modules
-/node_modules/
 
 # testing
 /coverage
 
 # production
 build
-
 lib
+dist
 
 # misc
 .DS_Store
@@ -20,14 +19,7 @@ lib
 .env.production.local
 .tern-port
 
-packages/**/lib/*
-packages/**/dist/*
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-
-packages/*/node_modules
-packages/*/lib
-packages/*/build

@@ -1,9 +1,6 @@
 alias reload='source ~/.zshrc'
-alias home='cd ~/'
-alias blog='cd ~/projects/blog/'
+alias home='cd $HOME'
 alias pr='cd ~/projects'
-alias ds="cd ~/projects/ds"
-alias dsf="cd ~/projects/ds/digital/frontend"
 alias h='history'
 alias wget="curl -O"
 alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
@@ -11,11 +8,10 @@ alias ema='open -a /Applications/Emacs.app $1'
 alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias em="emacsclient -t"
 alias cutt="cd ~/projects/cuttingedge"
-alias c2="cd ~/projects/meridian"
 
 # ls
-alias ls="ls -F -a"
-alias l="ls -lAh"
+alias ls="ls -F -a -1"
+alias l="ls -lAh1"
 alias ll="ls -l"
 alias la='ls -A'
 
@@ -33,12 +29,14 @@ alias yall="yarn prepack && yarn lint && yarn test"
 alias yl="yarn lint"
 alias yc="yarn clean"
 
+# git
+alias gs="git status"
+
 # npm
 alias npmb="npm run build"
 
 #ruby
 alias be="bundle exec"
-
 
 #postgres
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
@@ -110,6 +108,7 @@ function sizes()
 
 function docker-nuke()
 {
+  docker system prune -a --volumes
   docker rm $(docker ps -a -q) -f
   docker rmi $(docker images -q) -f
   docker network rm $(docker network ls -q)

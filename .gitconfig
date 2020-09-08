@@ -114,3 +114,5 @@
 [user]
 	name = Paul Cowan
 	email = paul.cowan@disclosurescotland.gov.scot
+[pull]
+	rebase = true
