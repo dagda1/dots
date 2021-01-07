@@ -32,5 +32,3 @@ set -o emacs
 . /usr/local/etc/profile.d/z.sh
 
 eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"

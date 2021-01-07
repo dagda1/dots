@@ -113,3 +113,13 @@ function docker-nuke()
   docker rmi $(docker images -q) -f
   docker network rm $(docker network ls -q)
 }
+
+function kill_bigtest()
+{
+  kill_process 24000
+  kill_process 24001
+  kill_process 24002
+  kill_process 36000
+  kill_process 36001
+  kill_process 36002
+}

@@ -17,3 +17,5 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export ZSH_DISABLE_COMPFIX="true"
 export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
