@@ -28,6 +28,7 @@ alias yp="yarn prepack"
 alias yall="yarn prepack && yarn lint && yarn test"
 alias yl="yarn lint"
 alias yc="yarn clean"
+alias yw="yarn watch"
 
 # git
 alias gs="git status"
@@ -94,7 +95,7 @@ function fd()
 
 function findIt ()
 {
-  find . -type $1 -iname "*$2*" -ls;
+  find . -type d \( -name node_modules -o -name dir2 -o -path name \) -prune -false -type $1 -o -iname "*$2*"
 }
 
 function kill_process()
@@ -113,6 +114,13 @@ function docker-nuke()
   docker rm $(docker ps -a -q) -f
   docker rmi $(docker images -q) -f
   docker network rm $(docker network ls -q)
+}
+
+function npmbin()
+{
+  cmd=$1
+  shift
+  $(npm bin)/$cmd "$@"
 }
 
 function kill_bigtest()

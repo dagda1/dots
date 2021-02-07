@@ -17,7 +17,7 @@
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [merge]
-  summary = true
+  summary = false
   verbosity = 1
 [apply]
   whitespace = nowarn
@@ -38,8 +38,10 @@
   # instead of a/b/c/d as prefixes for patches
   mnemonicprefix = true
   tool = default-difftool
+
 [difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
+
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
