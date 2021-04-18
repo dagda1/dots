@@ -3,10 +3,6 @@ alias home='cd $HOME'
 alias pr='cd ~/projects'
 alias h='history'
 alias wget="curl -O"
-alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
-alias ema='open -a /Applications/Emacs.app $1'
-alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
-alias em="emacsclient -t"
 alias cutt="cd ~/projects/cuttingedge"
 
 # ls

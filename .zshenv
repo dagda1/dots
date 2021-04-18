@@ -1,7 +1,7 @@
-export PATH=$PATH:/bin
-export PATH=$PATH:~/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:/usr/local/bin:/usr/bin:/bin
+export PATH="$PATH:/bin"
+export PATH="$PATH:~/bin"
+export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
