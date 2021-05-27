@@ -15,7 +15,6 @@ export CC=/usr/bin/gcc
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
-export NVM_AUTO_USE=true
 export ZSH_DISABLE_COMPFIX="true"
 export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"

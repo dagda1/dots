@@ -32,6 +32,7 @@ alias git-clean-up-repo=". $HOME/dotfiles/git-clean-up-repo.sh"
 
 # npm
 alias npmb="npm run build"
+alias npmib="npm install && npm run build"
 
 #ruby
 alias be="bundle exec"
