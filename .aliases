@@ -3,7 +3,7 @@ alias home='cd $HOME'
 alias pr='cd ~/projects'
 alias h='history'
 alias wget="curl -O"
-alias cutt="cd ~/projects/cuttingedge"
+alias cutt="git ~/projects/cuttingedge"
 
 # ls
 alias ls="ls -F -a -1"
@@ -25,10 +25,6 @@ alias yall="yarn prepack && yarn lint && yarn test"
 alias yl="yarn lint"
 alias yc="yarn clean"
 alias yw="yarn watch"
-
-# git
-alias gs="git status"
-alias git-clean-up-repo=". $HOME/dotfiles/git-clean-up-repo.sh"
 
 # npm
 alias npmb="npm run build"
