@@ -3,7 +3,7 @@ alias home='cd $HOME'
 alias pr='cd ~/projects'
 alias h='history'
 alias wget="curl -O"
-alias cutt="git ~/projects/cuttingedge"
+alias cutt="~/projects/cuttingedge"
 
 # ls
 alias ls="ls -F -a -1"
