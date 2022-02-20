@@ -1,5 +1,4 @@
-export PATH="$PATH:/bin"
-export PATH="$PATH:~/bin"
+export PATH="$PATH:/bin" export PATH="$PATH:~/bin"
 export PATH="$PATH:~/.local/bin"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin"
 export PATH="/usr/local/sbin:$PATH"
@@ -19,4 +18,9 @@ export ZSH_DISABLE_COMPFIX="true"
 export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
 export GITHUB_TOKEN="$(security find-generic-password -s ghub -a paulcowan -w)"
+export NPM_TOKEN="$(security find-generic-password -s npm -a paulcowan -w)"
 source "$HOME/.cargo/env"
+
+export POSTGRES_HOST="localhost"
+export POSTGRES_USER="postgres"
+export POSTGRES_PASSWORD="postgres"

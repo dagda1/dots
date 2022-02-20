@@ -31,6 +31,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source ./.my-zshenv
 
 # disable "sure you want to delete all the files"
 setopt rmstarsilent
