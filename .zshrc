@@ -16,6 +16,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 . $HOME/.zshenv
 
 plugins=(
+    zsh-nvm
     git
     iterm2
     colored-man-pages
@@ -31,7 +32,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source ./.my-zshenv
+
+[[ -f ./.my-zshenv ]] && source ./.my-zshenv
 
 # disable "sure you want to delete all the files"
 setopt rmstarsilent
@@ -52,3 +54,5 @@ eval "$(rbenv init -)"
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+CPLUS_INCLUDE_PATH=/opt/homebrew/include
+PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig
