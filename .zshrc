@@ -28,12 +28,13 @@ plugins=(
     zsh-syntax-highlighting
     zsh-volta
     npm
+    pnpm
     jsontools
 )
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -f ./.my-zshenv ]] && source ./.my-zshenv
+source ~/.my-zshenv
 
 # disable "sure you want to delete all the files"
 setopt rmstarsilent

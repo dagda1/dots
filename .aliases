@@ -11,24 +11,20 @@ alias l="ls -lAh1"
 alias ll="ls -l"
 alias la='ls -A'
 
-# yarn
 alias yi="yarn install"
 alias ya="yarn add"
 alias yt="yarn test"
 alias ys="yarn start"
 alias yb="yarn build"
 alias yib="yi && yb"
-alias yibs="yib && ys"
 alias yd="yarn deploy"
 alias yp="yarn prepack"
-alias yall="yarn prepack && yarn lint && yarn test"
-alias yl="yarn lint"
-alias yc="yarn clean"
-alias yw="yarn watch"
 
 # npm
 alias npmb="npm run build"
-alias npmib="npm install && npm run build"
+alias npml="npm run lint"
+
+# pnpm
 
 #ruby
 alias be="bundle exec"
