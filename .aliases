@@ -92,6 +92,8 @@ function kill_process()
    kill -9 $(lsof -i:$1 -t) 2> /dev/null
 }
 
+
+
 function sizes()
 {
    du -sh * | sort -hr 
@@ -119,4 +121,9 @@ function kill_bigtest()
   kill_process 36000
   kill_process 36001
   kill_process 36002
+}
+
+function ni()
+{
+  pnpm info $1 versions
 }
