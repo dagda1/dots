@@ -57,3 +57,8 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 CPLUS_INCLUDE_PATH=/opt/homebrew/include
 PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig
+
+# pnpm
+export PNPM_HOME="/Users/paulcowan/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
