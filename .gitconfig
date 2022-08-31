@@ -51,5 +51,12 @@
 [user]
 	name = Paul Cowan
 	email = paul.cowan@cutting.scot
+	signingkey = 7F06DB0B
 [pull]
 	rebase = true
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
+[init]
+	defaultBranch = main
