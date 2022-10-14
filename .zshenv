@@ -3,7 +3,6 @@ export PATH="$PATH:~/bin"
 export PATH="$PATH:~/.local/bin"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-export PATH="$(pyenv root)/shims:${PATH}"
 
 export CC=/usr/bin/gcc
 
