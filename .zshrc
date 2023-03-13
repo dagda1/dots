@@ -64,3 +64,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PNPM_HOME="/Users/paulcowan/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# temporary fix for vscode using its own history file
+source /Users/paulcowan/.docker/init-zsh.sh || true # Added by Docker Desktop
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
