@@ -1,10 +1,10 @@
 #!/bin/bash
 
-dir=~/dotfiles
-olddir=~/dotfiles_old
+dir=~/dots
+olddir=~/dots_old
 files=".aliases .gitignore_global .agignore .gitconfig .gitignore .zshenv .zshrc"
 
-echo "Creating $olddir for backup of any existing dotfiles in ~"
+echo "Creating $olddir for backup of any existing dots in ~"
 mkdir -p $olddir
 echo "...done"
 
@@ -19,9 +19,9 @@ for file in $files; do
 	      continue
     fi
 
-    echo "Moving any existing dotfiles from ~ to $olddir"
+    echo "Moving any existing dots from ~ to $olddir"
 
-    mv ~/$file ~/dotfiles_old/
+    mv ~/$file ~/dots_old/
 
     echo "Creating symlink to $file in home directory."
 

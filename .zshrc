@@ -8,15 +8,11 @@ fi
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# ZSH_THEME="lambda-gitster"
-# ZSH_THEME="xiong-chiamiov"
-# ZSH_THEME="xiong-chiamiov-plus"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 . $HOME/.zshenv
 
 plugins=(
-    zsh-nvm
     git
     iterm2
     colored-man-pages
@@ -30,6 +26,7 @@ plugins=(
     npm
     pnpm
     jsontools
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -39,11 +36,12 @@ source ~/.my-zshenv
 # disable "sure you want to delete all the files"
 setopt rmstarsilent
 
-set -o emacs
+echo "export EDITOR=/usr/bin/vim" >> ~/.zshrc
+echo "export VISUAL=/usr/bin/vim" >> ~/.zshrc
 
 . ~/.aliases
 
-. /usr/local/etc/profile.d/z.sh
+. /opt/homebrew/etc/profile.d/z.sh
 
 eval "$(rbenv init -)"
 
@@ -65,11 +63,7 @@ export PNPM_HOME="/Users/paulcowan/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-# temporary fix for vscode using its own history file
-source /Users/paulcowan/.docker/init-zsh.sh || true # Added by Docker Desktop
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim

@@ -66,7 +66,7 @@ function extract()      # Handy Extract Program.
      fi
 }
 
-alias whatsmyip="curl ifconfig.me"
+alias whatsmyip="curl ipv4.icanhazip.com"
 
 function ff()
 {

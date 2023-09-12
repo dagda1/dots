@@ -18,3 +18,8 @@ export POSTGRES_HOST="localhost"
 export POSTGRES_USER="postgres"
 export POSTGRES_PASSWORD="postgres"
 . "$HOME/.cargo/env"
+export GPG_TTY=$(tty)
+
+
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
