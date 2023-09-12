@@ -67,3 +67,5 @@ export PATH="$PNPM_HOME:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim

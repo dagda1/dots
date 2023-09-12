@@ -11,8 +11,6 @@ export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
 export ZSH_DISABLE_COMPFIX="true"
 export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
-export GITHUB_TOKEN="$(security find-generic-password -s ghub -a paulcowan -w)"
-export NPM_TOKEN="$(security find-generic-password -s npm -a paulcowan -w)"
 
 export POSTGRES_HOST="localhost"
 export POSTGRES_USER="postgres"
