@@ -23,13 +23,14 @@ alias yp="yarn prepack"
 # npm
 alias npmb="npm run build"
 alias npml="npm run lint"
+alias npmd="npm run dev"
 
 # pnpm
 
 #ruby
 alias be="bundle exec"
 
-#kill
+#killŸ
 kill_vscode='kill -9 $(pgrep Electron)'
 
 function rstvsc()
@@ -42,6 +43,14 @@ function rstvsc_log()
 {
    rm ~/.tslog 2> /dev/null
    TSS_LOG="-level verbose -file /Users/paulcowan/.tslog" rstvsc
+}
+
+function replace() {
+  rg -l "$1" | xargs sd "$1" "$2"
+}
+
+mk() {
+  mkdir -p "$@" && cd "$@"
 }
 
 function extract()      # Handy Extract Program.

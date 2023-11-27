@@ -18,6 +18,7 @@ export POSTGRES_PASSWORD="postgres"
 . "$HOME/.cargo/env"
 export GPG_TTY=$(tty)
 
+export VOLTA_FEATURE_PNPM=1
 
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
