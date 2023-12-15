@@ -15,10 +15,13 @@ export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 export POSTGRES_HOST="localhost"
 export POSTGRES_USER="postgres"
 export POSTGRES_PASSWORD="postgres"
-. "$HOME/.cargo/env"
+
 export GPG_TTY=$(tty)
 
 export VOLTA_FEATURE_PNPM=1
 
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
