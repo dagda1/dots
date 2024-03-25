@@ -99,7 +99,7 @@ function kill_process()
 
 function sizes()
 {
-   du -sh * | sort -hr 
+   for i in */; do du -sh "$i"; done | sort -hr
 }
 
 function docker-nuke()

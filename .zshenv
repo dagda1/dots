@@ -19,9 +19,9 @@ export POSTGRES_PASSWORD="postgres"
 export GPG_TTY=$(tty)
 
 export VOLTA_FEATURE_PNPM=1
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
