@@ -2,7 +2,7 @@
 
 dir=~/dots
 olddir=~/dots_old
-files=".aliases .gitignore_global .agignore .gitconfig .gitignore .zshenv .zshrc"
+files=".aliases .gitignore_global .agignore .gitconfig .gitignore .zshenv .zshrc .install-plugins"
 
 echo "Creating $olddir for backup of any existing dots in ~"
 mkdir -p $olddir

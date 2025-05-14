@@ -12,13 +12,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 . $HOME/.zshenv
 
+source ~/.install-plugins
+
 plugins=(
     git
     iterm2
     colored-man-pages
     yarn
     vscode
-    frontend-search
     zsh-autosuggestions
     zsh-history-substring-search
     zsh-syntax-highlighting
@@ -59,3 +60,4 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+. "/Users/paulcowan/.deno/env"

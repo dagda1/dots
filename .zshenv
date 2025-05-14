@@ -6,6 +6,8 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 export CC=/usr/bin/gcc
 
+export ESLINT_USE_FLAT_CONFIG=true
+
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
