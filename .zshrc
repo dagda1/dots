@@ -63,3 +63,5 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 . "/Users/paulcowan/.deno/env"
+# Added by Windsurf
+export PATH="/Users/paulcowan/.codeium/windsurf/bin:$PATH"
