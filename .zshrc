@@ -65,3 +65,28 @@ export SDKMAN_DIR="$HOME/.sdkman"
 . "/Users/paulcowan/.deno/env"
 # Added by Windsurf
 export PATH="/Users/paulcowan/.codeium/windsurf/bin:$PATH"
+
+# clauder-shell-integration
+# Claude Code usage statusline - https://github.com/nksrentas/clauder
+# clauder_statusline() {
+#   if [[ -x "$HOME/.claude/statusline-command.sh" ]]; then
+#     "$HOME/.claude/statusline-command.sh"
+#   fi
+# }
+
+# Add to RPROMPT for right-side display (recommended)
+# Uncomment one of the following options:
+
+# Option 1: Right prompt (recommended - doesn't affect command input)
+# RPROMPT='$(clauder_statusline)'
+
+# Option 2: Add to existing prompt
+# PROMPT="$PROMPT"'$(clauder_statusline) '
+
+# Option 3: Precmd hook (updates on each command)
+# precmd_clauder() {
+#   CLAUDER_STATUS=$(clauder_statusline)
+# }
+# precmd_functions+=(precmd_clauder)
+# RPROMPT='$CLAUDER_STATUS'
+# end clauder-shell-integration

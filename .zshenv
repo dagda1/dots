@@ -27,3 +27,4 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
