@@ -28,3 +28,5 @@ export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=1
+export AWS_ALARM_EMAIL="paul.cowan@cutting.scot"

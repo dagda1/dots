@@ -118,7 +118,7 @@ function npmbin()
 
 function ni()
 {
-  pnpm info $1 versions
+  pnpm info $1 versions | sort -V
 }
 
 alias pib="pnpm install && pnpm build"
